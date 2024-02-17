@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            let computerChoice;
+            const result = Math.floor(Math.random() * 10);
+            console.log(result);
+            if (result >= 0 && result <= 3){
+                computerChoice = "rock";
+                return computerChoice;
+            }
+            else if (result >= 4 && result <= 6){
+                computerChoice = "paper";
+                return computerChoice;
+            }
+            else {
+                computerChoice = "scissors";
+                return computerChoice;
+            }
+        }
+
+        function singleRound(playerSelection, computerSelection){
+            let playerChoice = playerSelection.toLowerCase();
+
+            if (computerSelection == rock) {
+                switch (playerSelection) {
+                    case 'rock': 
+                        alert('You Tied! Rock ties with Rock');
+                        break;
+                    case 'paper':
+                        alert('You Win! Paper beats Rock');
+                        break;
+                    case 'scissors':
+                        alert('You Lose! Rock beats Scissors');
+                        break;
+                    default: 
+                        alert('You made a choice that is not valid.');
+                }
+            }
+            else if (computerSelection == paper) {
+                switch (playerSelection) {
+                    case 'rock': 
+                        alert('You Tied! Rock ties with Rock');
+                        break;
+                    case 'paper':
+                        alert('You Win! Paper beats Rock');
+                        break;
+                    case 'scissors':
+                        alert('You Lose! Rock beats Scissors');
+                        break;
+                    default: 
+                        alert('You made a choice that is not valid.');
+                }
+            }
+            else {
+
+            }
+            if (playerSelection == rock && computerSelection == scissors) {
+
+            }
+            else if (playerSelection == paper && computerSelection == rock) {
+
+            }
+            else if (playerSelection == scissors && computerSelection == paper) {
+
+            }
+            return winner;
+        }
+
+        console.log(getComputerChoice());
+    </script>
+</body>
+</html>
