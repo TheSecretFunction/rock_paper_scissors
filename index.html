@@ -3,262 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Project: Rock, Paper, Scissors</title>
 </head>
 <body>
     <script>
-        /*
         //1a. Make function getComputerChoice.
-        //1b. Randomly return rock, paper, or scissors from computer.
         function getComputerChoice() {
-            let computerChoice;
             const result = Math.floor(Math.random() * 9) + 1;
-            console.log(result);
-            if (result >= 0 && result <= 3){
-                computerChoice = "rock";
-                return computerChoice;
+
+            //1b. Randomly return rock, paper, or scissors from computer.
+            if (result >= 0 && result <= 3) {
+                computerSelection = "rock";
+                return computerSelection;
             }
-            else if (result >= 4 && result <= 6){
-                computerChoice = "paper";
-                return computerChoice;
+            else if (result >= 4 && result <= 6) {
+                computerSelection = "paper";
+                return computerSelection;
             }
             else {
-                computerChoice = "scissors";
-                return computerChoice;
+                computerSelection = "scissors";
+                return computerSelection;
             }
         }
 
         //2a. Make function to play single round of parameters playerSelection and computerSelection.
-        //2b. Return string declaring winner or tie, i.e. "You Lose! Paper beats Rock".
-        //2c. Takes case-insensitive input.
         function singleRound(playerSelection, computerSelection) {
+            //2b. Takes case-insensitive input.
             let playerChoice = playerSelection.toLowerCase();
 
-            if (computerSelection == rock) {
-                switch (playerSelection) {
-                    case 'rock': 
-                        alert('You Tied! Rock ties with Rock');
-                        playerScore++;
-                        computerScore++;
-                        break;
-                    case 'paper':
-                        alert('You Win! Paper beats Rock');
-                        playerScore++;
-                        break;
-                    case 'scissors':
-                        alert('You Lose! Rock beats Scissors');
-                        computerScore++;
-                        break;
-                    default: 
-                        alert('You made a choice that is not valid.');
+            let outcome;
 
+            if ((playerChoice == "rock") || (playerChoice == "paper") || (playerChoice == "scissors")) {
+                //2c. Return string declaring winner or tie, i.e. "You Lose! Paper beats Rock".
+                if (computerSelection == "rock") {
+                    switch (playerChoice) {
+                        case "rock": 
+                            console.log('You Tied! Rock ties with Rock');
+                            //playerScore++;
+                            //computerScore++;
+                            outcome = "tied";
+                            return outcome;
+                            break;
+                        case "paper":
+                            console.log('You Win! Paper beats Rock');
+                            //playerScore++;
+                            outcome = "win";
+                            return outcome;
+                            break;
+                        case "scissors":
+                            console.log('You Lose! Rock beats Scissors');
+                            //computerScore++;
+                            outcome = "lose";
+                            return outcome;
+                            break;
+                        default: 
+                            outcome = "invalid";
+                            return outcome;
+                            break;
+                    }
                 }
-            }
-            else if (computerSelection == paper) {
-                switch (playerSelection) {
-                    case 'rock': 
-                        alert('You Lose! Paper beats Rock');
-                        computerScore++;
-                        break;
-                    case 'paper':
-                        alert('You Tied! Paper ties with Paper');
-                        playerScore++;
-                        computerScore++;
-                        break;
-                    case 'scissors':
-                        alert('You Win! Scissors beats Paper');
-                        playerScore++;
-                        break;
-                    default: 
-                        alert('You made a choice that is not valid.');
+                else if (computerSelection == "paper") {
+                    switch (playerChoice) {
+                        case "rock": 
+                            console.log('You Lose! Paper beats Rock');
+                            //computerScore++;
+                            outcome = "lose";
+                            return outcome;
+                            break;
+                        case "paper":
+                            console.log('You Tied! Paper ties with Paper');
+                            //playerScore++;
+                            //computerScore++;
+                            outcome = "tied";
+                            return outcome;
+                            break;
+                        case "scissors":
+                            console.log('You Win! Scissors beats Paper');
+                            //playerScore++;
+                            outcome = "win";
+                            return outcome;
+                            break;
+                        default: 
+                            outcome = "invalid";
+                            return outcome;
+                            break;
+                    }
                 }
-            }
-            else {
-                switch (playerSelection) {
-                    case 'rock': 
-                        alert('You Win! Rock beats Scissors');
-                        userScore++;
-                        break;
-                    case 'paper':
-                        alert('You Lose! Scissors beats Paper');
-                        computerScore++;
-                        break;
-                    case 'scissors':
-                        alert('You Tied! Scissors ties with Scissors');
-                        playerScore++;
-                        computerScore++;
-                        break;
-                    default: 
-                        alert('You made a choice that is not valid.');
+                else {
+                    switch (playerChoice) {
+                        case "rock": 
+                            console.log('You Win! Rock beats Scissors');
+                            //playerScore++;
+                            outcome = "win";
+                            return outcome;
+                            break;
+                        case "paper":
+                            console.log('You Lose! Scissors beats Paper');
+                            //computerScore++;
+                            outcome = "lose";
+                            return outcome;
+                            break;
+                        case "scissors":
+                            console.log('You Tied! Scissors ties with Scissors');
+                            //playerScore++;
+                            //computerScore++;
+                            outcome = "tied";
+                            return outcome;
+                            break;
+                        default: 
+                            outcome = "invalid";
+                            return outcome;
+                            break;  
+                    }
                 }
             }
         }
 
         //3a. Make function playGame().
-        //3b. Use previous function inside this to play 5 rounds keeping score and reporting status at end.
-        //3c. Use prompt() to get input. 
         function playGame() {
+            let playerScore = 0;
+            let computerScore = 0;
+
             for (let i = 0; i < 5; i++) {
-                let userScore = 0;
-                let computerScore = 0;
-
-                getComputerChoice();
-
+                //3b. Use prompt() to get input. 
                 let playerSelection = prompt("Type rock, paper, or scissors: ");
+                let playerChoice = playerSelection.toLowerCase();
 
-                singleRound(playerSelection, computerSelection);
-                console.log(i);
+                //3c. Use previous function inside this to play 5 rounds keeping score and reporting status at end.
+                getComputerChoice();
+                singleRound(playerChoice, computerSelection);
+                scoreKeeping(singleRound(playerChoice, computerSelection), playerScore, computerScore, i);
             }
-            if (userScore > computerScore) {
-                console.log("You have won the match.");
+        }
+
+        // Make function scoreKeeping.
+        function scoreKeeping(condition, playerScore, computerScore, i){
+            if (condition == "win") {
+                playerScore++;
+            }
+            else if (condition == "lose") {
+                computerScore++;
+            }
+            else if (condition == "tied") {
+                playerScore++;
+                computerScore++;
             }
             else {
-                console.log("You have lost the match.");
+                i--;
             }   
+
+            if (i == 4) {
+                if (playerScore > computerScore) {
+                    console.log('You have won the match.');
+                }
+                else if (playerScore < computerScore) {
+                    console.log('You have lost the match.');
+                }
+                else {
+                    console.log('There is a match tie.');
+                }
+            }
+            //else {
+            //    continue;
+            //}
         }
 
+        // Execution.
         playGame();
-        */
-        let playerScore = 0;
-        let computerScore = 0;
-
-        for (let i = 0; i < 5; i++) {
-            let playerSelection = prompt("Type rock, paper, or scissors: ");
-            let playerChoice = playerSelection.toLowerCase();
-            console.log(playerChoice);
-
-            if (playerChoice == "rock" || "paper" || "scissors") {
-                console.log("if statement approved");
-                const result = Math.floor(Math.random() * 9) + 1;
-                //console.log(result);
-
-                if (result >= 0 && result <= 3) {
-                    computerChoice = "rock";
-                    //return computerChoice;
-                }
-                else if (result >= 4 && result <= 6) {
-                    computerChoice = "paper";
-                    //return computerChoice;
-                }
-                else {
-                    computerChoice = "scissors";
-                    //return computerChoice;
-                }
-                //console.log(i + " - Player: " + playerChoice);
-                //console.log(i + " - Computer: " + computerChoice);
-
-                if (computerChoice == "rock") {
-                    switch (playerChoice) {
-                        case "rock": 
-                            console.log(i + 'You Tied! Rock ties with Rock');
-                            playerScore++;
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "paper":
-                            console.log(i + 'You Win! Paper beats Rock');
-                            playerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "scissors":
-                            console.log(i + 'You Lose! Rock beats Scissors');
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        //default: 
-                            //console.log('You made a choice that is not valid.');
-                    }
-                }
-                else if (computerChoice == "paper") {
-                    switch (playerChoice) {
-                        case "rock": 
-                            console.log(i + 'You Lose! Paper beats Rock');
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "paper":
-                            console.log(i + 'You Tied! Paper ties with Paper');
-                            playerScore++;
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "scissors":
-                            console.log(i + 'You Win! Scissors beats Paper');
-                            playerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        //default: 
-                            //console.log('You made a choice that is not valid.');
-                    }
-                }
-                else {
-                    switch (playerChoice) {
-                        case "rock": 
-                            console.log(i + 'You Win! Rock beats Scissors');
-                            playerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "paper":
-                            console.log(i + 'You Lose! Scissors beats Paper');
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        case "scissors":
-                            console.log(i + 'You Tied! Scissors ties with Scissors');
-                            playerScore++;
-                            computerScore++;
-                            //console.log(i + " - You: " + playerScore);
-                            //console.log(i + " - Computer: " + computerScore);
-                            break;
-                        //default: 
-                            //console.log('You made a choice that is not valid.');
-                    }
-                }
-
-                //console.log("You: " + playerScore);
-                //console.log("Computer: " + computerScore);
-
-                if (i == 4) {
-                    if (playerScore > computerScore) {
-                        console.log(i + " You have won the match.");
-                        //break;
-                    }
-                    else if (playerScore < computerScore) {
-                        console.log(i + " You have lost the match.");
-                        //break;
-                    }
-                    else {
-                        console.log(i + " There is a match tie.");
-                        //break;
-                    }
-                }
-                else {
-                    continue;
-                }
-            }
-            //console.log("Does it ever get to this point?");
-            else {
-                console.log("Does it ever get to this point?");
-                if (i < 0) {
-                    i = -1;
-                    console.log(i + "nope");
-                    //break;
-                }
-                else {
-                    i -= 2;
-                    console.log(i + "nope");
-                    //break;
-                }
-            }
-        }
     </script>
 </body>
 </html>
