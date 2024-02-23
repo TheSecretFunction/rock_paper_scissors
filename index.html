@@ -66,20 +66,16 @@
                     switch (playerChoice) {
                         case "rock": 
                             console.log('You Lose! Paper beats Rock');
-                            //computerScore++;
                             outcome = "lose";
                             return outcome;
                             break;
                         case "paper":
                             console.log('You Tied! Paper ties with Paper');
-                            //playerScore++;
-                            //computerScore++;
                             outcome = "tied";
                             return outcome;
                             break;
                         case "scissors":
                             console.log('You Win! Scissors beats Paper');
-                            //playerScore++;
                             outcome = "win";
                             return outcome;
                             break;
@@ -93,20 +89,16 @@
                     switch (playerChoice) {
                         case "rock": 
                             console.log('You Win! Rock beats Scissors');
-                            //playerScore++;
                             outcome = "win";
                             return outcome;
                             break;
                         case "paper":
                             console.log('You Lose! Scissors beats Paper');
-                            //computerScore++;
                             outcome = "lose";
                             return outcome;
                             break;
                         case "scissors":
                             console.log('You Tied! Scissors ties with Scissors');
-                            //playerScore++;
-                            //computerScore++;
                             outcome = "tied";
                             return outcome;
                             break;
@@ -116,23 +108,6 @@
                             break;  
                     }
                 }
-            }
-        }
-
-        //3a. Make function playGame().
-        function playGame() {
-            let playerScore = 0;
-            let computerScore = 0;
-
-            for (let i = 0; i < 5; i++) {
-                //3b. Use prompt() to get input. 
-                let playerSelection = prompt("Type rock, paper, or scissors: ");
-                let playerChoice = playerSelection.toLowerCase();
-
-                //3c. Use previous function inside this to play 5 rounds keeping score and reporting status at end.
-                getComputerChoice();
-                singleRound(playerChoice, computerSelection);
-                scoreKeeping(singleRound(playerChoice, computerSelection), playerScore, computerScore, i);
             }
         }
 
@@ -163,9 +138,29 @@
                     console.log('There is a match tie.');
                 }
             }
-            //else {
-            //    continue;
-            //}
+        }
+
+        //3a. Make function playGame().
+        function playGame() {
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for (let i = 0; i < 5; i++) {
+                //3b. Use prompt() to get input. 
+                let playerSelection = prompt("Type rock, paper, or scissors: ");
+                if (playerSelection == "") {
+                    i--;
+                }
+                else if (playerSelection == null) {
+                    break;
+                }
+                let playerChoice = playerSelection.toLowerCase();
+
+                //3c. Use previous function inside this to play 5 rounds keeping score and reporting status at end.
+                getComputerChoice();
+                singleRound(playerChoice, computerSelection);
+                scoreKeeping(singleRound(playerChoice, computerSelection), playerScore, computerScore, i);
+            }
         }
 
         // Execution.
