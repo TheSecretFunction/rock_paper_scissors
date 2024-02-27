@@ -1,4 +1,4 @@
-//Make function getComputerChoice to randomly return rock, paper, or scissors from computer.
+// Function to randomly return rock, paper, or scissors from computer.
 function getComputerChoice() {
     const result = Math.floor(Math.random() * 9) + 1;
 
@@ -16,7 +16,7 @@ function getComputerChoice() {
     }
 }
 
-//Make function to play single round of parameters playerSelection and computerSelection taking in case-insensitive input and returning string declaring winner or tie.
+// Function to play single round taking in case-insensitive input and returning string declaring winner or tie.
 function singleRound(playerSelection, computerSelection) {
     let playerChoice = playerSelection.toLowerCase();
 
@@ -95,7 +95,7 @@ function singleRound(playerSelection, computerSelection) {
     }
 }
 
-// Make function scoreKeeping of parameters single round condition, player score, computer score, and iteration count of for loop to keep track of each round score.
+// Function to keep track of each round score.
 function scoreKeeping(condition, playerScore, computerScore, i){
     if (condition == "win") {
         playerScore++;
@@ -124,7 +124,7 @@ function scoreKeeping(condition, playerScore, computerScore, i){
     }
 }
 
-//Make function playGame() to prompt user for input and utilizing all other functions to complete match of game and reports the match outcome.
+// Function to prompt user for input and utilizing all other functions to complete match of game and reports the match outcome.
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
@@ -145,5 +145,5 @@ function playGame() {
     }
 }
 
-// Execute the playGame() function.
+// Execution of the game.
 playGame();
